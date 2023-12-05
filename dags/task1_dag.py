@@ -1,5 +1,5 @@
 # add this file to folder dags
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from airflow import DAG
 from airflow.operators.python import PythonOperator
@@ -31,11 +31,11 @@ first_task = PythonOperator(
 def print_date_or_skip(ds, ti, **kwargs) -> str:
     """Получение даты или скип."""
     current_datetime = ti.xcom_pull(task_ids='push_current_date_time')
-    if current_datetime.minute >= 30 :
+    if current_datetime.minute >= 30:
         print(current_datetime.date())
         return 'Finish'
     return 'Skip minute < 30'
-        
+
 
 second_task = PythonOperator(
     task_id='print_date_or_skip',

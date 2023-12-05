@@ -164,3 +164,4 @@ cython_debug/
 logs/
 standalone_admin_password.txt
 *.cfg
+*.vscode
