@@ -38,3 +38,7 @@ pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}
 Запустить airflow
 
 `airflow standalone`
+
+Тесты:
+
+airflow tasks test task_1 push_current_date_time current_date
