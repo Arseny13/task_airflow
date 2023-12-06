@@ -3,6 +3,7 @@ from datetime import datetime
 
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.exceptions import AirflowSkipException
 
 
 args = {
@@ -34,7 +35,7 @@ def print_date_or_skip(ds, ti, **kwargs) -> str:
     if current_datetime.minute >= 30:
         print(current_datetime.date())
         return 'Finish'
-    return 'Skip minute < 30'
+    raise AirflowSkipException
 
 
 second_task = PythonOperator(
